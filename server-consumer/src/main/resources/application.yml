@@ -1,0 +1,24 @@
+server:
+  # 端口
+  port: 8771
+
+spring:
+  application:
+    # 应用名称
+    name: server-consumer
+
+eureka:
+  client:
+    # 是否将自己注册到注册中心（默认：true）
+    register-with-eureka: false
+    # Eureka Client 间隔多久去服务器拉去注册信息，默认30秒
+    registry-fetch-interval-seconds: 10
+    # 注册中心对外暴露的注册地址
+    serviceUrl:
+      defaultZone: http://root:123456@localhost:8761/eureka/,http://root:123456@localhost:8762/eureka/
+
+# 局部【server-provider】设置负载均衡策略
+server-provider:
+  ribbon:
+    # 随机负载均衡策略
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule

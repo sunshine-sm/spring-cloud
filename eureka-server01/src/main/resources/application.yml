@@ -1,0 +1,31 @@
+server:
+  # 端口
+  port: 8761
+
+spring:
+  application:
+    # 应用名称
+    name: eureka-server
+
+  # 注册中心配置安全认证
+  security:
+    user:
+      name: root
+      password: 123456
+
+eureka:
+  server:
+    # true: 开启自我保护； false: 关闭自我保护
+    enable-self-preservation: true
+    # 清理间隔（单位：毫秒，默认：0）
+    eviction-interval-timer-in-ms: 60000
+  instance:
+    # 主机名
+    hostname: eureka01
+    # 是否使用IP地址注册
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    # 注册中心对外暴露的注册地址
+    serviceUrl:
+      defaultZone: http://root:123456@localhost:8762/eureka/

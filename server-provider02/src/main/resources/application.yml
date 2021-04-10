@@ -1,0 +1,18 @@
+server:
+  # 端口
+  port: 8752
+
+spring:
+  application:
+    # 应用名称
+    name: server-provider
+
+eureka:
+  instance:
+    # 是否使用IP地址注册
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    # 注册中心对外暴露的注册地址
+    serviceUrl:
+      defaultZone: http://root:123456@localhost:8761/eureka/,http://root:123456@localhost:8762/eureka/
